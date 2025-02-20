@@ -1,0 +1,282 @@
+html, body {
+    font-family: 'Courier New', serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: linear-gradient(45deg, #fa7075, #ffab93); /* Keeps the gradient */
+}
+
+/* Background container and image */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Above the gradient, but behind content */
+    pointer-events: none; /* Prevents interaction with the image */
+}
+
+/* Background image settings */
+.background-image {
+    width: 100%;
+    height: 100%;
+    background-image: url('/dumby.jpg');
+    background-size: 75%;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.3; /* Adjust opacity so background color stays visible */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* Smooth transition */
+}
+
+  
+  /* Main container: content goes here */
+  .container {
+    position: relative;
+    z-index: 2;  /* Above the background image */
+    font-family: 'Courier New', serif;
+    text-align: center;
+    background: transparent; /* Use the body's gradient */
+    background-color: linear-gradient(45deg, #fa7075, #ffab93);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px; /* Space for the fixed header */
+    color: #32475c;
+    padding: 20px;
+  }
+  
+  /* Fixed header with navigation */
+  .app-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #ff4d6d;
+    color: #fff;
+    padding: 10px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .app-header nav {
+    width: 100%;
+  }
+  
+  .nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item {
+    margin: 0 15px;
+  }
+  
+  .nav-item a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .nav-item a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Main content styling */
+  main h1 {
+    margin-top: 3em;
+    font-size: 3rem;
+    text-align: center;
+  }
+  
+  /* Roulette section and flex layout */
+  .roulette-section {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .roulette-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  /* Container for the roulette wheel and needle */
+  .roulette-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Roulette wheel styling */
+  .roulette-wheel {
+    width: 250px;
+    height: 250px;
+    border: 10px solid #fff;
+    border-radius: 50%;
+    background: conic-gradient(
+      #ff4d6d 0deg 9.23deg,
+      #ff1a4c 9.23deg 18.46deg,
+      #fa7075 18.46deg 27.69deg,
+      #ffab93 27.69deg 36.92deg,
+      #ff4d6d 36.92deg 46.15deg,
+      #ff1a4c 46.15deg 55.38deg,
+      #fa7075 55.38deg 64.61deg,
+      #ffab93 64.61deg 73.84deg,
+      #ff4d6d 73.84deg 83.07deg,
+      #ff1a4c 83.07deg 92.3deg,
+      #fa7075 92.3deg 101.53deg,
+      #ffab93 101.53deg 110.76deg,
+      #ff4d6d 110.76deg 119.99deg,
+      #ff1a4c 119.99deg 129.22deg,
+      #fa7075 129.22deg 138.45deg,
+      #ffab93 138.45deg 147.68deg,
+      #ff4d6d 147.68deg 156.91deg,
+      #ff1a4c 156.91deg 166.14deg,
+      #fa7075 166.14deg 175.37deg,
+      #ffab93 175.37deg 184.6deg,
+      #ff4d6d 184.6deg 193.83deg,
+      #ff1a4c 193.83deg 203.06deg,
+      #fa7075 203.06deg 212.29deg,
+      #ffab93 212.29deg 221.52deg,
+      #ff4d6d 221.52deg 230.75deg,
+      #ff1a4c 230.75deg 239.98deg,
+      #fa7075 239.98deg 249.21deg,
+      #ffab93 249.21deg 258.44deg,
+      #ff4d6d 258.44deg 267.67deg,
+      #ff1a4c 267.67deg 276.9deg,
+      #fa7075 276.9deg 286.13deg,
+      #ffab93 286.13deg 295.36deg,
+      #ff4d6d 295.36deg 304.59deg,
+      #ff1a4c 304.59deg 313.82deg,
+      #fa7075 313.82deg 323.05deg,
+      #ffab93 323.05deg 332.28deg,
+      #ff4d6d 332.28deg 341.51deg,
+      #ff1a4c 341.51deg 350.74deg,
+      #fa7075 350.74deg 360deg
+    );
+    transition: transform 3s cubic-bezier(.25, .1, .25, 1);
+    cursor: pointer;
+  }
+  
+  /* Inward-pointing needle styling */
+  .needle {
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 20px solid #fff;
+    z-index: 1100;
+  }
+  
+  /* Machine display styling */
+  .machine {
+    width: 200px;
+    height: 1rem;
+    border: 4px solid #fff;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Machine message animation */
+  .machine-message {
+    font-size: 1.2rem;
+    color: #fff;
+    text-align: center;
+    font-family: 'Courier New', serif;
+    animation: slotSpin 1s ease-in-out;
+  }
+  
+  .machine-message.final {
+    animation: none;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Keyframes for slot-machine effect */
+  @keyframes slotSpin {
+    0% {
+      opacity: 0;
+      transform: translateY(-50%);
+    }
+    30% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    70% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(50%);
+    }
+  }
+  
+  /* Button styling */
+  button {
+    background-color: #ff4d6d;
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    font-size: 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 2rem;
+  }
+  
+  button:hover {
+    background-color: #ff1a4c;
+  }
+  
+  /* Love message styling */
+  .love-message {
+    position: fixed;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2rem;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 15px 30px;
+    border-radius: 10px;
+    z-index: 1100;
+    color: #beb1ff;
+  }
+  
+  /* Footer styling */
+  footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem 0;
+  }
+  
+  footer p {
+    margin: 0;
+    font-size: 1rem;
+    text-align: center;
+    color: #fff;
+  }
+  
